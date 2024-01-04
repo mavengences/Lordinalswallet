@@ -36,7 +36,7 @@ function injectScript() {
       pm.dispose();
     });
   } catch (error) {
-    console.error('Litescribe: Provider injection failed.', error);
+    console.error('Lordinals: Provider injection failed.', error);
   }
 }
 

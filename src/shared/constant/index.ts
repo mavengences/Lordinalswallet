@@ -165,7 +165,7 @@ export const ADDRESS_TYPES: {
 export const RESTORE_WALLETS: { value: RestoreWalletType; name: string; addressTypes: AddressType[] }[] = [
   {
     value: RestoreWalletType.UNISAT,
-    name: 'Litescribe Wallet',
+    name: 'Lordinals Wallet',
     addressTypes: [
       AddressType.P2WPKH,
       AddressType.P2SH_P2WPKH,
@@ -219,17 +219,17 @@ export const WALLETCONNECT_STATUS_MAP = {
   FAILD: 6
 };
 
-export const INTERNAL_REQUEST_ORIGIN = 'https://litescribe.io';
+export const INTERNAL_REQUEST_ORIGIN = 'https://liteverseordinals.com';
 
 export const INTERNAL_REQUEST_SESSION = {
-  name: 'Litescribe Wallet',
+  name: 'Lordinals Wallet',
   origin: INTERNAL_REQUEST_ORIGIN,
   icon: './images/logo/logo@128x.png'
 };
 
-export const OPENAPI_URL_MAINNET = 'https://litescribe.io/api';
+export const OPENAPI_URL_MAINNET = 'https://liteverseordinals.com/api';
 // export const OPENAPI_URL_MAINNET = 'https://unisat.io/wallet-api-v4';
-export const OPENAPI_URL_TESTNET = 'https://testnet.litescribe.io/api';
+export const OPENAPI_URL_TESTNET = 'https://testnet.liteverseordinals.com/api';
 
 export const EVENTS = {
   broadcastToUI: 'broadcastToUI',
@@ -267,9 +267,9 @@ export const UNISAT_DOMAIN = '.unilit';
 export const LTC_DOMAIN = '.ltc';
 export const LITE_DOMAIN = '.lite';
 
-export const GITHUB_URL = 'https://github.com/LiteVerseHoldings/extension-ltc';
+export const GITHUB_URL = 'https://github.com/mavengences/Lordinalswallet';
 export const DISCORD_URL = 'https://discord.gg/Ffs5fTuCf7';
-export const TWITTER_URL = 'https://twitter.com/litescribe_io';
+export const TWITTER_URL = 'https://twitter.com/LOrdinals_';
 
 export const CHANNEL = process.env.channel!;
 export const VERSION = process.env.release!;

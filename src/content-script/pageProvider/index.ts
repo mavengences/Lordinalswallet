@@ -12,14 +12,14 @@ import { $, domReadyCall } from './utils';
 const log = (event, ...args) => {
   if (process.env.NODE_ENV !== 'production') {
     console.log(
-      `%c [litescribe] (${new Date().toTimeString().slice(0, 8)}) ${event}`,
+      `%c [Lordinals] (${new Date().toTimeString().slice(0, 8)}) ${event}`,
       'font-weight: 600; background-color: #7d6ef9; color: white;',
       ...args
     );
   }
 };
 const script = document.currentScript;
-const channelName = script?.getAttribute('channel') || 'LITESCRIBE';
+const channelName = script?.getAttribute('channel') || 'Lordinals';
 
 export interface Interceptor {
   onRequest?: (data: any) => any;
@@ -314,23 +314,23 @@ export class UnisatProvider extends EventEmitter {
 
 declare global {
   interface Window {
-    litescribe: UnisatProvider;
+    Lordinals: UnisatProvider;
   }
 }
 
 const provider = new UnisatProvider();
 
-if (!window.litescribe) {
-  window.litescribe = new Proxy(provider, {
+if (!window.Lordinals) {
+  window.Lordinals = new Proxy(provider, {
     deleteProperty: () => true
   });
 }
 
-Object.defineProperty(window, 'litescribe', {
+Object.defineProperty(window, 'Lordinals', {
   value: new Proxy(provider, {
     deleteProperty: () => true
   }),
   writable: false
 });
 
-window.dispatchEvent(new Event('litescribe#initialized'));
+window.dispatchEvent(new Event('Lordinals#initialized'));

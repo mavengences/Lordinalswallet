@@ -1,7 +1,7 @@
-# Litescribe Wallet
+# Lordinals Wallet
 
-- Website: https://litescribe.io/
-- Twitter: https://twitter.com/litescribe_io
+- Website: https://liteverseordinals.com
+- Twitter: https://twitter.com/LOrdinals_
 
 Forked from UniSat Wallet - the first open-source browser extension wallet for Ordinals on bitcoin.
 

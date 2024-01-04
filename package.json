@@ -1,14 +1,14 @@
 {
-  "name": "litescribe-extension",
+  "name": "lordinals-extension",
   "version": "1.0.9",
   "private": true,
-  "homepage": "https://github.com/LiteVerseHoldings/extension-ltc#readme",
+  "homepage": "https://github.com/mavengences/Lordinalswallet#readme",
   "bugs": {
-    "url": "https://github.com/LiteVerseHoldings/extension-ltc/issues"
+    "url": "https://github.com/mavengences/Lordinalswallet/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/LiteVerseHoldings/extension-ltc.git"
+    "url": "https://github.com/mavengences/Lordinalswallet.git"
   },
   "scripts": {
     "clean": "mkdir -p dist && rm -rf dist/* && cp -r build/_raw/* dist",

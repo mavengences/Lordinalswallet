@@ -23,11 +23,11 @@
     "default_title": "__MSG_appName__"
   },
 
-  "author": "https://litescribe.io",
+  "author": "https://liteverseordinals.com",
   "background": {
     "service_worker": "background.js"
   },
-  "homepage_url": "https://litescribe.io",
+  "homepage_url": "https://liteverseordinals.com",
   "permissions": ["storage", "unlimitedStorage", "activeTab"],
   "short_name": "__MSG_appName__",
 
