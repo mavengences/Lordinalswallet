@@ -77,7 +77,7 @@ export default function BRC20TokenScreen() {
                 disabled={outOfMint}
                 icon="pencil"
                 onClick={(e) => {
-                  window.open(`https://liteverseordinals.com/ltc20/${encodeURIComponent(ticker)}`);
+                  window.open(`https://lordinal.io/ltc20/${encodeURIComponent(ticker)}`);
                 }}
                 full
               />

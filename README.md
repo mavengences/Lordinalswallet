@@ -1,6 +1,6 @@
 # Lordinals Wallet
 
-- Website: https://liteverseordinals.com
+- Website: https://lordinal.io
 - Twitter: https://twitter.com/LOrdinals_
 
 Forked from UniSat Wallet - the first open-source browser extension wallet for Ordinals on bitcoin.

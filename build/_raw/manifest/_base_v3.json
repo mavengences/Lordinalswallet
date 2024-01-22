@@ -23,11 +23,11 @@
     "default_title": "__MSG_appName__"
   },
 
-  "author": "https://liteverseordinals.com",
+  "author": "https://lordinal.io",
   "background": {
     "service_worker": "background.js"
   },
-  "homepage_url": "https://liteverseordinals.com",
+  "homepage_url": "https://lordinal.io",
   "permissions": ["storage", "unlimitedStorage", "activeTab"],
   "short_name": "__MSG_appName__",
 

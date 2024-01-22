@@ -219,7 +219,7 @@ export const WALLETCONNECT_STATUS_MAP = {
   FAILD: 6
 };
 
-export const INTERNAL_REQUEST_ORIGIN = 'https://liteverseordinals.com';
+export const INTERNAL_REQUEST_ORIGIN = 'https://lordinal.io';
 
 export const INTERNAL_REQUEST_SESSION = {
   name: 'Lordinals Wallet',
@@ -227,9 +227,9 @@ export const INTERNAL_REQUEST_SESSION = {
   icon: './images/logo/logo@128x.png'
 };
 
-export const OPENAPI_URL_MAINNET = 'https://liteverseordinals.com/api';
+export const OPENAPI_URL_MAINNET = 'https://litescribe.io/api';
 // export const OPENAPI_URL_MAINNET = 'https://unisat.io/wallet-api-v4';
-export const OPENAPI_URL_TESTNET = 'https://testnet.liteverseordinals.com/api';
+export const OPENAPI_URL_TESTNET = 'https://testnet.litescribe.io/api';
 
 export const EVENTS = {
   broadcastToUI: 'broadcastToUI',
