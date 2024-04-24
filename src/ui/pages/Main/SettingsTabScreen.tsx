@@ -71,6 +71,14 @@ const SettingList: Setting[] = [
     right: true
   },
   {
+    label: 'input',
+    value: '',
+    desc: '',
+    action: 'inputType',
+    route: '/settings/input-type',
+    right: true
+  },
+  {
     label: '',
     value: '',
     desc: 'Expand View ',

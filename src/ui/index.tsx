@@ -16,6 +16,7 @@ import { AppDimensions } from './components/Responsive';
 import AsyncMainRoute from './pages/MainRoute';
 import store from './state';
 import { WalletProvider } from './utils';
+import InputProvider, { InputContext } from './utils/InputContext';
 
 Sentry.init({
   dsn: 'https://1c9a7b73dfce4bd4a5f2e8ee4a87a487@o4505351621640192.ingest.sentry.io/4505351636779008',
@@ -153,12 +154,14 @@ const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
   <Provider store={store}>
     <WalletProvider {...antdConfig} wallet={wallet as any}>
-      <ActionComponentProvider>
-        <AppDimensions>
-          <Updaters />
-          <AsyncMainRoute />
-        </AppDimensions>
-      </ActionComponentProvider>
+      <InputProvider>
+        <ActionComponentProvider>
+          <AppDimensions>
+            <Updaters />
+            <AsyncMainRoute />
+          </AppDimensions>
+        </ActionComponentProvider>
+      </InputProvider>
     </WalletProvider>
   </Provider>
 );

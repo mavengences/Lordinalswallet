@@ -13,10 +13,10 @@ import { settingsActions } from '../state/settings/reducer';
 import { useWallet } from '../utils';
 import AddKeyringScreen from './Account/AddKeyringScreen';
 import CreateAccountScreen from './Account/CreateAccountScreen';
-import SelectPhraseLengthScreen from './Account/SelectPhraseLengthScreen';
 import CreateHDWalletScreen from './Account/CreateHDWalletScreen';
 import CreatePasswordScreen from './Account/CreatePasswordScreen';
 import CreateSimpleWalletScreen from './Account/CreateSimpleWalletScreen';
+import SelectPhraseLengthScreen from './Account/SelectPhraseLengthScreen';
 import SwitchAccountScreen from './Account/SwitchAccountScreen';
 import SwitchKeyringScreen from './Account/SwitchKeyringScreen';
 import UnlockScreen from './Account/UnlockScreen';
@@ -37,6 +37,7 @@ import EditAccountNameScreen from './Settings/EditAccountNameScreen';
 import EditWalletNameScreen from './Settings/EditWalletNameScreen';
 import ExportMnemonicsScreen from './Settings/ExportMnemonicsScreen';
 import ExportPrivateKeyScreen from './Settings/ExportPrivateKeyScreen';
+import InputType from './Settings/InputType';
 import NetworkTypeScreen from './Settings/NetworkTypeScreen';
 import UpgradeNoticeScreen from './Settings/UpgradeNoticeScreen';
 import TestScreen from './Test/TestScreen';
@@ -189,6 +190,10 @@ const routes = {
   AddressTypeScreen: {
     path: '/settings/address-type',
     element: <AddressTypeScreen />
+  },
+  InputType: {
+    path: '/settings/input-type',
+    element: <InputType />
   },
   EditAccountNameScreen: {
     path: '/settings/edit-account-name',
