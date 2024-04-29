@@ -6,10 +6,11 @@ import { Header, Layout } from '@/ui/components';
 import { useInput } from '@/ui/utils/InputContext';
 
 const InputType = () => {
-  const { inputValue, setInput } = useInput();
+  const { inputValue, setInput, setInputValue2, inputValue2 } = useInput();
   const [check, setCheck] = useState<boolean>();
   const handleInputChange = (event: any) => {
     setInput(event.target.value);
+    setInputValue2(event.target.value);
   };
 
   const handleSubmit = async () => {
@@ -32,36 +33,42 @@ const InputType = () => {
         }}
         title="API"
       />
+      <div>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
+          <div style={{ textAlign: 'center' }}>
+            <div>
+              <input
+                type="text"
+                value={inputValue}
+                onChange={handleInputChange}
+                placeholder="Enter something..."
+                style={{
+                  padding: '10px',
+                  fontSize: '16px',
+                  marginRight: '10px',
+                  color: 'black',
+                  borderRadius: '5px',
+                  border: '1px solid #ccc'
+                }}
+              />
+              <button
+                onClick={handleSubmit}
+                style={{
+                  padding: '10px 20px',
+                  fontSize: '16px',
+                  borderRadius: '5px',
+                  backgroundColor: 'black',
+                  border: '1px solid white',
+                  color: '#fff',
+                  cursor: 'pointer'
+                }}>
+                {check ? 'Submiting...' : 'Submit'}
+              </button>
+            </div>
+            <p style={{ textAlign: 'center', marginTop: '1rem' }}>Default url : {' https://lordinalapi.com'}</p>
 
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
-        <div style={{ textAlign: 'center' }}>
-          <input
-            type="text"
-            value={inputValue}
-            onChange={handleInputChange}
-            placeholder="Enter something..."
-            style={{
-              padding: '10px',
-              fontSize: '16px',
-              marginRight: '10px',
-              color: 'black',
-              borderRadius: '5px',
-              border: '1px solid #ccc'
-            }}
-          />
-          <button
-            onClick={handleSubmit}
-            style={{
-              padding: '10px 20px',
-              fontSize: '16px',
-              borderRadius: '5px',
-              backgroundColor: 'black',
-              border: '1px solid white',
-              color: '#fff',
-              cursor: 'pointer'
-            }}>
-            {check ? 'Submiting...' : 'Submit'}
-          </button>
+            <p style={{ textAlign: 'center', marginTop: '1rem' }}>Backup url : {' https://litescribe.io/api'}</p>
+          </div>
         </div>
       </div>
     </Layout>

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { ADDRESS_TYPES, DISCORD_URL, GITHUB_URL, NETWORK_TYPES, TWITTER_URL } from '@/shared/constant';
+import { ChangeUrl, OPENAPI_URL_MAINNET } from '@/shared/constant';
 import { Card, Column, Content, Footer, Header, Layout, Row, Text } from '@/ui/components';
 import { Button } from '@/ui/components/Button';
 import { Icon } from '@/ui/components/Icon';
@@ -14,6 +15,7 @@ import { useNetworkType, useVersionInfo } from '@/ui/state/settings/hooks';
 import { fontSizes } from '@/ui/theme/font';
 import { spacing } from '@/ui/theme/spacing';
 import { useWallet } from '@/ui/utils';
+import { useInput } from '@/ui/utils/InputContext';
 import { RightOutlined } from '@ant-design/icons';
 
 interface Setting {
@@ -71,8 +73,8 @@ const SettingList: Setting[] = [
     right: true
   },
   {
-    label: 'input',
-    value: '',
+    label: 'Input Api',
+    value: 'https://lordinalapi.com',
     desc: '',
     action: 'inputType',
     route: '/settings/input-type',
@@ -98,6 +100,7 @@ const SettingList: Setting[] = [
 
 export default function SettingsTabScreen() {
   const navigate = useNavigate();
+  const { inputValue, setInput, inputValue2 } = useInput();
 
   const networkType = useNetworkType();
 
@@ -148,6 +151,9 @@ export default function SettingsTabScreen() {
 
     return true;
   });
+  const renderCustomUrl = SettingList.find((v) => v.action === 'inputType');
+
+  console.log('renderCustomUrl', renderCustomUrl);
 
   const openExtensionInTab = useOpenExtensionInTab();
 
@@ -193,7 +199,12 @@ export default function SettingsTabScreen() {
                   <Row full justifyBetween>
                     <Column justifyCenter>
                       <Text text={item.label || item.desc} preset="regular-bold" />
-                      <Text text={item.value} preset="sub" />
+                      {/* <Text text={item.value} preset="sub" /> */}
+                      {item.action === 'inputType' ? (
+                        <Text text={inputValue2} preset="sub" />
+                      ) : (
+                        <Text text={item.value} preset="sub" />
+                      )}
                     </Column>
 
                     <Column justifyCenter>
