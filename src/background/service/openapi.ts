@@ -4,7 +4,6 @@ import { createPersistStore } from '@/background/utils';
 import { CHANNEL, OPENAPI_URL_MAINNET, OPENAPI_URL_TESTNET, VERSION } from '@/shared/constant';
 import {
   AddressAssets,
-  AppSummary,
   TokenBalance,
   BitcoinBalance,
   FeeSummary,
@@ -237,12 +236,32 @@ export class OpenApiService {
     return data.result;
   }
 
-  async getAppSummary(): Promise<AppSummary> {
-    const data = await this.httpGet('/default/app-summary', {});
-    if (data.status == API_STATUS.FAILED) {
-      throw new Error(data.message);
+  // async getAppSummary(): Promise<AppSummary> {
+  //   const data = await this.httpGet('/default/app-summary', {});
+  //   if (data.status == API_STATUS.FAILED) {
+  //     throw new Error(data.message);
+  //   }
+  //   return data.result;
+  // }
+  async getAppSummary() {
+    const url = 'https://liteverseordinals-api.com:5000/fetchWalletLogos';
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      const contentType = response.headers.get('content-type');
+      if (response.ok) {
+        const data = await response.json();
+        return data;
+      } else {
+        console.error('Failed to fetch wallet logos:', response.statusText);
+      }
+    } catch (error) {
+      console.error('Error fetching wallet logos:', error);
     }
-    return data.result;
   }
 
   async pushTx(rawtx: string): Promise<string> {
