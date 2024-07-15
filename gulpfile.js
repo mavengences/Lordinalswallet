@@ -3,13 +3,12 @@ var webpackConfigFunc = require('./webpack.config');
 var gulp = require('gulp');
 var zip = require('gulp-zip');
 var clean = require('gulp-clean');
-var jsoncombine = require('gulp-jsoncombine');
 var minimist = require('minimist');
 var packageConfig = require('./package.json');
 const { exit } = require('process');
 const uglify = require('gulp-uglify');
 
-//parse arguments
+// Parse arguments
 var knownOptions = {
   string: ['env', 'browser', 'manifest', 'channel'],
   default: {
@@ -41,11 +40,11 @@ if (!supported_browsers.includes(options.browser)) {
   exit(0);
 }
 if (!supported_mvs.includes(options.manifest)) {
-  console.error(`not supported browser: [${options.manifest}]. It should be one of ${supported_mvs.join(', ')}.`);
+  console.error(`not supported manifest version: [${options.manifest}]. It should be one of ${supported_mvs.join(', ')}.`);
   exit(0);
 }
 
-//tasks...
+// Tasks
 function task_clean() {
   return gulp.src(`dist/${options.browser}/*`, { read: false }).pipe(clean());
 }
@@ -54,24 +53,66 @@ function task_prepare() {
   return gulp.src('build/_raw/**/*').pipe(gulp.dest(`dist/${options.browser}`));
 }
 
-function task_merge_manifest() {
-  let baseFile = '_base_v3';
-  if (options.manifest == 'mv2') {
-    baseFile = '_base_v2';
-  }
-  return gulp
-    .src([
-      `dist/${options.browser}/manifest/${baseFile}.json`,
-      `dist/${options.browser}/manifest/${options.browser}.json`
-    ])
-    .pipe(
-      jsoncombine('manifest.json', (data, meta) => {
-        const result = Object.assign({}, data[baseFile], data[options.browser]);
-        result.version = validVersion;
-        return Buffer.from(JSON.stringify(result));
-      })
-    )
-    .pipe(gulp.dest(`dist/${options.browser}`));
+function task_write_manifest() {
+  const manifestV3 = {
+    "manifest_version": 3,
+    "name": "__MSG_appName__",
+    "version": validVersion,
+    "default_locale": "en",
+    "description": "__MSG_appDescription__",
+    "icons": {
+      "16": "/images/logo/logo@16x.png",
+      "32": "/images/logo/logo@32x.png",
+      "48": "/images/logo/logo@48x.png",
+      "128": "/images/logo/logo@128x.png"
+    },
+    "action": {
+      "default_popup": "index.html",
+      "default_icon": {
+        "16": "/images/logo/logo@16x.png",
+        "32": "/images/logo/logo@32x.png",
+        "48": "/images/logo/logo@48x.png",
+        "128": "/images/logo/logo@128x.png"
+      },
+      "default_title": "__MSG_appName__"
+    },
+    "author": "https://lordinal.io",
+    "background": {
+      "service_worker": "background.js"
+    },
+    "homepage_url": "https://lordinal.io",
+    "permissions": [
+      "storage",
+      "unlimitedStorage",
+      "activeTab",
+      "scripting"
+    ],
+    "short_name": "__MSG_appName__",
+    "content_scripts": [
+      {
+        "matches": ["<all_urls>"],
+        "js": ["content-script.js"],
+        "run_at": "document_start",
+        "all_frames": true
+      }
+    ],
+    "content_security_policy": {
+      "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'"
+    },
+    "web_accessible_resources": [
+      {
+        "resources": ["pageProvider.js"],
+        "matches": ["<all_urls>"]
+      }
+    ],
+    "externally_connectable": {
+      "matches": ["https://lordinal.io/*"]
+    },
+    "minimum_chrome_version": "88"
+  };
+
+  const manifestFile = JSON.stringify(manifestV3, null, 2); // Pretty print the JSON
+  return require('fs').promises.writeFile(`dist/${options.browser}/manifest.json`, manifestFile);
 }
 
 function task_clean_tmps() {
@@ -92,7 +133,7 @@ function task_webpack(cb) {
 }
 
 function task_uglify(cb) {
-  if (options.env == 'pro') {
+  if (options.env === 'pro') {
     return gulp
       .src(`dist/${options.browser}/**/*.js`)
       .pipe(uglify())
@@ -102,8 +143,8 @@ function task_uglify(cb) {
 }
 
 function task_package(cb) {
-  if (options.env == 'pro') {
-    if (options.browser == 'firefox') {
+  if (options.env === 'pro') {
+    if (options.browser === 'firefox') {
       return gulp
         .src(`dist/${options.browser}/**/*`)
         .pipe(zip(`${brandName}-${options.browser}-${options.manifest}-v${version}.xpi`))
@@ -121,7 +162,7 @@ function task_package(cb) {
 exports.build = gulp.series(
   task_clean,
   task_prepare,
-  task_merge_manifest,
+  task_write_manifest,
   task_clean_tmps,
   task_webpack,
   task_uglify,
