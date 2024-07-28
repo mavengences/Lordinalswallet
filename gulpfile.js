@@ -7,6 +7,7 @@ var minimist = require('minimist');
 var packageConfig = require('./package.json');
 const { exit } = require('process');
 const uglify = require('gulp-uglify');
+const fs = require('fs');
 
 // Parse arguments
 var knownOptions = {
@@ -84,8 +85,7 @@ function task_write_manifest() {
     "permissions": [
       "storage",
       "unlimitedStorage",
-      "activeTab",
-      "scripting"
+      "activeTab"
     ],
     "short_name": "__MSG_appName__",
     "content_scripts": [
@@ -112,7 +112,7 @@ function task_write_manifest() {
   };
 
   const manifestFile = JSON.stringify(manifestV3, null, 2); // Pretty print the JSON
-  return require('fs').promises.writeFile(`dist/${options.browser}/manifest.json`, manifestFile);
+  return fs.promises.writeFile(`dist/${options.browser}/manifest.json`, manifestFile);
 }
 
 function task_clean_tmps() {
