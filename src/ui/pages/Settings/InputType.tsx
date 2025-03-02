@@ -67,7 +67,7 @@ const InputType = () => {
             </div>
             <p style={{ textAlign: 'center', marginTop: '1rem' }}>Default url : {' https://lordinalapi.com'}</p>
 
-            <p style={{ textAlign: 'center', marginTop: '1rem' }}>Backup url : {' https://litescribe.io/api'}</p>
+            <p style={{ textAlign: 'center', marginTop: '1rem' }}>Backup url : {' https://api.litescribe.io/api'}</p>
           </div>
         </div>
       </div>
